@@ -1,9 +1,14 @@
+const dotenv = require('dotenv');
 const express = require('express');
 const mongoose = require('mongoose');
-const userRoutes = require('./routes/userRoutes');
 const bodyParser = require('body-parser');
+const routes = require('./routes'); 
+
+dotenv.config();
+
 const app = express();
 const PORT = process.env.PORT || 3000;
+const API_PATH = '/api'
 
 // Middleware
 app.use(express.json());
@@ -21,7 +26,7 @@ mongoose.connect(mongoURL, {
 app.use(bodyParser.json());
 
 // Routes
-app.use('/api/users', userRoutes);
+app.use(`${API_PATH}`, routes);
 
 // เริ่มต้นเซิร์ฟเวอร์
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
