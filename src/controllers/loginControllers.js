@@ -26,8 +26,6 @@ exports.login = async (req, res) => {
         user.refresh_token = refreshToken;
         await user.save(); // บันทึก Refresh Token
 
-        console.log('user',user)
-
         res.status(200).send({ access_token: accessToken, refresh_token: refreshToken, user });
     } catch (error) {
         console.log('error', error)
